@@ -1,0 +1,23 @@
+# Virtual environment
+.venv/
+
+# Environment files
+.env
+.venv/.env
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Distribution / packaging
+build/
+dist/
+*.egg-info/
+
+# pytest
+.pytest_cache/
+
+# Editor directories and files
+.vscode/
+*.swp
