@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Talk to Bach</title>
+    <link rel="stylesheet" href="/static/styles.css">
+  </head>
+  <body>
+    <div class="container">
+      <aside class="portrait">
+        <img src="/static/bach.jpg" alt="Johann Sebastian Bach" />
+        <h2>Johann Sebastian Bach</h2>
+      </aside>
+
+      <main class="chat-area">
+        <div id="messages" class="messages"></div>
+
+        <form id="chatForm" class="chat-form">
+          <input id="input" type="text" placeholder="Ask Bach a question..." autocomplete="off" />
+          <button type="submit">Send</button>
+        </form>
+      </main>
+    </div>
+
+    <script src="/static/app.js"></script>
+  </body>
+</html>
