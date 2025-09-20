@@ -9,3 +9,7 @@ It uses the OpenAI API to generate responses, always staying in character as the
    ```bash
    git clone https://github.com/your-username/bach-chatbot.git
    cd bach-chatbot
+
+create the env
+uv env --python=3.12
+source .venv/bin/activate
