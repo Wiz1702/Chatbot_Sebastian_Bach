@@ -4,25 +4,62 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <title>Talk to Bach</title>
+    <!-- Bootstrap 5 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="/static/styles.css">
   </head>
   <body>
-    <div class="container">
-      <aside class="portrait">
-        <img src="/static/bach.jpg" alt="Johann Sebastian Bach" />
-        <h2>Johann Sebastian Bach</h2>
-      </aside>
+    <div class="container py-5">
+      <div class="row justify-content-center">
+        <div class="col-12 col-md-10 col-lg-8">
+          <div class="card shadow-lg overflow-hidden fullscreen-card">
+            <div class="row g-0 h-100">
+              <!-- Portrait & Bio Column -->
+              <div class="col-12 col-md-4 bg-light d-flex flex-column align-items-center justify-content-start p-4 portrait-column">
+                <img id="bachPortrait" src="/static/bach1.jpg" alt="Johann Sebastian Bach" class="rounded-circle portrait-img mb-3">
+                <h3 class="card-title mb-1 text-center">Johann Sebastian Bach</h3>
+                <p class="text-muted small mb-3 text-center">Ask the master — scholarly, devout, and ever musical.</p>
+                <blockquote class="blockquote text-center small">
+                  <p>"I was obliged to be industrious. Whoever is equally industrious will succeed equally well."</p>
+                </blockquote>
+                <p class="small text-center">
+                  Talk to me about anything you wish, though I delight especially in music, composition, and the Baroque era!
+                </p>
 
-      <main class="chat-area">
-        <div id="messages" class="messages"></div>
+                <!-- Toggles -->
+                <div class="d-flex flex-column align-items-center gap-2 mt-3">
+                  <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" id="darkModeToggle">
+                    <label class="form-check-label" for="darkModeToggle">Dark mode</label>
+                  </div>
+                  <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" id="musicGodToggle">
+                    <label class="form-check-label" for="musicGodToggle">Music God (music-only answers)</label>
+                  </div>
+                </div>
+              </div>
 
-        <form id="chatForm" class="chat-form">
-          <input id="input" type="text" placeholder="Ask Bach a question..." autocomplete="off" />
-          <button type="submit">Send</button>
-        </form>
-      </main>
+              <!-- Chat Column -->
+              <div class="col-12 col-md-8 d-flex flex-column">
+                <div class="card-body chat-body bg-white d-flex flex-column p-3" id="chatBody">
+                  <div id="messages" class="messages flex-grow-1 p-3"></div>
+                  <div class="mt-3">
+                    <form id="chatForm" class="d-flex gap-2" autocomplete="off">
+                      <input id="input" class="form-control form-control-lg" type="text" placeholder="Ask Bach a question..." aria-label="Message input">
+                      <button id="sendBtn" class="btn btn-primary btn-lg" type="submit">Send</button>
+                    </form>
+                  </div>
+                </div>
+              </div>
+
+            </div> <!-- End Row -->
+          </div> <!-- End Card -->
+        </div>
+      </div>
     </div>
 
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <script src="/static/app.js"></script>
   </body>
 </html>
