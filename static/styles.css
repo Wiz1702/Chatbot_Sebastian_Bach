@@ -6,12 +6,12 @@
 body{font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial; background:var(--bg); margin:0; min-height:100vh}
 
 /* Fullscreen card */
-.fullscreen-card{height:calc(100vh - 48px)}
-.portrait-column{background:linear-gradient(180deg,#fff,#f6f3ee); box-shadow:2px 0 6px rgba(0,0,0,0.04)}
+.fullscreen-card{min-height:calc(100vh - 24px)}
+.portrait-column{background:linear-gradient(180deg,#fff,#f6f3ee); box-shadow:2px 0 6px rgba(0,0,0,0.04); overflow-y:auto}
 .portrait-img{width:220px; height:220px; object-fit:cover; border-radius:50%; box-shadow:0 8px 24px rgba(0,0,0,0.12)}
 
-.chat-body{display:flex; flex-direction:column; height:100%}
-.messages{flex:1; overflow:auto; border-radius:8px; background:transparent}
+.chat-body{display:flex; flex-direction:column; height:100%; /* allow children with overflow to shrink properly */ min-height:0}
+.messages{flex:1 1 auto; overflow-y:auto; overflow-x:hidden; border-radius:8px; background:transparent; min-height:0}
 .message{margin:10px 0; padding:12px 14px; border-radius:12px; max-width:80%}
 .message.user{margin-left:auto; background:#e7f0ff}
 .message.bach{background:#fff7e6}
@@ -57,4 +57,34 @@ body{font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue'
 .messages::-webkit-scrollbar-track{ background: transparent }
 
 /* Ensure message list scrolls from bottom when new messages arrive */
-.messages { scroll-behavior: smooth; padding-bottom: 12px; }
+.messages { scroll-behavior: smooth; padding-bottom: 12px; display:flex; flex-direction:column; gap:6px }
+
+/* Ensure flex-column parents inside the card can shrink so the messages area doesn't push the input out of view */
+.card .row > .col-12.col-md-8.d-flex.flex-column,
+.card .row > .col-12.col-md-4.d-flex.flex-column {
+  min-height: 0;
+}
+
+/* Make sure the chat-body itself won't overflow its card */
+.card .chat-body { min-height: 0 }
+
+/* Sticky footer for chat input */
+.chat-footer {
+  position: sticky;
+  bottom: 0;
+  background: transparent;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  z-index: 2;
+}
+
+/* Ensure messages area doesn't get hidden behind the sticky footer */
+.messages { padding-bottom: 84px; }
+
+/* Use dynamic viewport height so the input doesn't get hidden behind mobile browser chrome/keyboard */
+@supports (height: 100dvh) {
+  .fullscreen-card { min-height: calc(100dvh - 24px); }
+}
+
+/* Add padding for iOS safe-area and avoid the input sitting under the home indicator */
+.chat-body { padding-bottom: max(12px, env(safe-area-inset-bottom)); }
